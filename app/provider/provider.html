@@ -1,1 +1,12 @@
-<p>This is the partial for provider.</p>
+<p>Submit a claim using the form below.</p>
+<div ng-controller="ProviderCtrl">
+  <form novalidate>
+    <label>Service Performed: <input type="text" ng-model="claim.servicePerformed" /></label><br />
+    <label>Service Provider Id: <input type="text" ng-model="claim.serviceProviderId" /></label><br />
+    <label>Employer No: <input type="text" ng-model="claim.employerNo" /></label><br />
+    <label>Employee No: <input type="text" ng-model="claim.employeeNo" /></label><br />
+    <label>Amount: <input type="text" ng-model="claim.amount" /></label><br />
+    <input type="submit" ng-click="processClaim(claim)" value="Process" />
+  </form>
+  <pre>status = {{status}}</pre>
+</div>
