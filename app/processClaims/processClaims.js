@@ -1,15 +1,15 @@
 'use strict';
 
-angular.module('myApp.provider', ['ngRoute'])
+angular.module('myApp.processClaims', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/provider', {
-    templateUrl: 'provider/provider.html',
-    controller: 'ProviderCtrl'
+  $routeProvider.when('/processClaims', {
+    templateUrl: 'processClaims/processClaims.html',
+    controller: 'ProcessClaimsCtrl'
   });
 }])
 
-.controller('ProviderCtrl', ['$scope', '$http', function($scope, $http) {
+.controller('ProcessClaimsCtrl', ['$scope', '$http', function($scope, $http) {
   $scope.status = '';
 
   $scope.isClaimable = function(service, amount) {
