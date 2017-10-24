@@ -1,1 +1,22 @@
-<p>This is the partial for insurer.</p>
+<p>This is the view for insurer.</p>
+
+<div  ng-controller="InsurerCtrl">
+  <table style="border:1px">
+    <th>
+      <td>Service Performed</td>
+      <td>Service Provider Id</td>
+      <td>Employer No</td>
+      <td>Employee No</td>
+      <td>Claimable</td>
+      <td>Amount</td>
+    </th>
+    <tr ng-repeat="claim in claims">
+      <td>{{ claim.Record.servicePerformed }}</td>
+      <td>{{ claim.Record.serviceProviderId }}</td>
+      <td>{{ claim.Record.employerNo }}</td>
+      <td>{{ claim.Record.employeeNo }}</td>
+      <td>{{ claim.Record.isClaimable }}</td>
+      <td>{{ claim.Record.amount }}</td>
+    </tr>
+  </table>
+</div>

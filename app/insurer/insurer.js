@@ -9,6 +9,9 @@ angular.module('myApp.insurer', ['ngRoute'])
   });
 }])
 
-.controller('InsurerCtrl', [function() {
-
+.controller('InsurerCtrl', ['$scope', '$http', function($scope, $http) {
+  $http.get("http://localhost:8081/getClaims")
+  .then(function (response) {
+    $scope.claims = response.data;
+  });
 }]);
