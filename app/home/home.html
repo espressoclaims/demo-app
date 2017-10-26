@@ -1,0 +1,50 @@
+<div class="tabs">
+  <div class="tab-2">
+    <label for="tab2-1">Process Claim</label>
+    <input id="tab2-1" name="tabs-two" type="radio" checked="checked">
+    <div>
+      <h4>Process Claim</h4>
+      <p>Submit a claim using the form below.</p>
+      <div ng-controller="ProcessClaimsCtrl">
+        <form novalidate>
+          <label>Service Performed: <input type="text" ng-model="claim.servicePerformed" /></label><br />
+          <label>Service Provider Id: <input type="text" ng-model="claim.serviceProviderId" /></label><br />
+          <label>Employer No: <input type="text" ng-model="claim.employerNo" /></label><br />
+          <label>Employee No: <input type="text" ng-model="claim.employeeNo" /></label><br />
+          <label>Amount: <input type="text" ng-model="claim.amount" /></label><br />
+          <input type="submit" ng-click="processClaim(claim)" value="Process" />
+        </form>
+        <pre>status = {{status}}</pre>
+      </div>
+    </div>
+  </div>
+  <div class="tab-2">
+    <label for="tab2-2">List All Claims</label>
+    <input id="tab2-2" name="tabs-two" type="radio">
+    <div>
+      <h4>List Claims</h4>
+      <p>This is the view for insurer.</p>
+
+      <div  ng-controller="ListClaimsCtrl">
+        <table style="border:1px">
+          <th>
+            <td>Service Performed</td>
+            <td>Service Provider Id</td>
+            <td>Employer No</td>
+            <td>Employee No</td>
+            <td>Claimable</td>
+            <td>Amount</td>
+          </th>
+          <tr ng-repeat="claim in claims">
+            <td>{{ claim.Record.servicePerformed }}</td>
+            <td>{{ claim.Record.serviceProviderId }}</td>
+            <td>{{ claim.Record.employerNo }}</td>
+            <td>{{ claim.Record.employeeNo }}</td>
+            <td>{{ claim.Record.isClaimable }}</td>
+            <td>{{ claim.Record.amount }}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
