@@ -16,23 +16,9 @@ angular.module('myApp.home', ['ngRoute'])
 .controller('ProcessClaimsCtrl', ['$scope', '$http', function($scope, $http) {
   $scope.status = '';
 
-  $scope.isClaimable = function(service, amount) {
-    return amount < 100;
-  }
-
-  $scope.canClaim = function(service, amount) {
-    return 0.5*amount;
-  }
-
   $scope.processClaim = function(claim) {
-    // FIXME: this logic is CRAP and needs to be replaced with an actual data source!!
-    if($scope.isClaimable(claim.servicePerformed, claim.amount)) {
-      claim.isClaimable = true;
-      claim.amount = $scope.canClaim(claim.servicePerformed, claim.amount);
-    } else {
-      claim.isClaimable = false;
-    }
-
+    //FIXME 'isClaimable' field needs to be eventually removed
+    claim.isClaimable = true;
     $http({
           url: 'http://localhost:8081/addClaim',
           method: 'POST',
