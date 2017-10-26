@@ -4,7 +4,6 @@
     <input id="tab2-1" name="tabs-two" type="radio" checked="checked">
     <div>
       <h4>Process Claim</h4>
-      <p>Submit a claim using the form below.</p>
       <div ng-controller="ProcessClaimsCtrl">
         <form novalidate>
           <label>Service Performed: <input type="text" ng-model="claim.servicePerformed" /></label><br />
@@ -23,8 +22,6 @@
     <input id="tab2-2" name="tabs-two" type="radio">
     <div>
       <h4>List Claims</h4>
-      <p>This is the view for insurer.</p>
-
       <div  ng-controller="ListClaimsCtrl">
         <table style="border:1px">
           <th>
