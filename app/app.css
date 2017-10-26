@@ -141,6 +141,7 @@ fieldset {
   background: #FFF;
   margin: 0 0 5px;
   padding: 10px;
+  color: #191828;
 }
 
 #processForm input[type="text"]:hover {
