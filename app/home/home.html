@@ -3,15 +3,27 @@
     <label for="tab2-1">Process Claim</label>
     <input id="tab2-1" name="tabs-two" type="radio" checked="checked">
     <div>
-      <h4>Process Claim</h4>
+      <h4>Use the form below to submit a claim</h4>
       <div ng-controller="ProcessClaimsCtrl">
-        <form novalidate>
-          <label>Service Performed: <input type="text" ng-model="claim.servicePerformed" /></label><br />
-          <label>Service Provider Id: <input type="text" ng-model="claim.serviceProviderId" /></label><br />
-          <label>Employer No: <input type="text" ng-model="claim.employerNo" /></label><br />
-          <label>Employee No: <input type="text" ng-model="claim.employeeNo" /></label><br />
-          <label>Amount: <input type="text" ng-model="claim.amount" /></label><br />
-          <input type="submit" ng-click="processClaim(claim)" value="Process" />
+        <form novalidate id="processForm">
+          <fieldset>
+            <input placeholder="Service Performed" type="text" tabindex="1" required autofocus ng-model="claim.servicePerformed">
+          </fieldset>
+          <fieldset>
+            <input placeholder="Service Provider Id" type="text" tabindex="2" required ng-model="claim.serviceProviderId">
+          </fieldset>
+          <fieldset>
+            <input placeholder="Employer No" type="text" tabindex="3" required ng-model="claim.employerNo">
+          </fieldset>
+          <fieldset>
+            <input placeholder="Employee No" type="text" tabindex="4" required ng-model="claim.employeeNo">
+          </fieldset>
+          <fieldset>
+            <input placeholder="Amount" type="text" tabindex="4" required ng-model="claim.amount">
+          </fieldset>
+          <fieldset>
+            <button name="submit" type="submit" ng-click="processClaim(claim)">Process</button>
+          </fieldset>
         </form>
         <pre>status = {{status}}</pre>
       </div>
