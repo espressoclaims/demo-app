@@ -194,6 +194,10 @@ fieldset {
   color: #888;
 }
 
+pre {
+  color: yellow;
+}
+
 .table-fill {
   border-radius:3px;
   border-collapse: collapse;
