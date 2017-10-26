@@ -193,3 +193,18 @@ fieldset {
 :-ms-input-placeholder {
   color: #888;
 }
+
+.table-fill {
+  border-radius:3px;
+  border-collapse: collapse;
+  height: 320px;
+  margin: auto;
+  padding:5px;
+  width: 100%;
+  animation: float 5s infinite;
+}
+
+th {
+  border-bottom:4px solid #4CAF50;
+  text-align:left;
+}

@@ -33,25 +33,27 @@
     <label for="tab2-2">List All Claims</label>
     <input id="tab2-2" name="tabs-two" type="radio">
     <div>
-      <h4>List Claims</h4>
+      <h4>See below the list of all claims processed on the network.</h4>
       <div  ng-controller="ListClaimsCtrl">
-        <table style="border:1px">
-          <th>
-            <td>Service Performed</td>
-            <td>Service Provider Id</td>
-            <td>Employer No</td>
-            <td>Employee No</td>
-            <td>Claimable</td>
-            <td>Amount</td>
-          </th>
-          <tr ng-repeat="claim in claims">
-            <td>{{ claim.Record.servicePerformed }}</td>
-            <td>{{ claim.Record.serviceProviderId }}</td>
-            <td>{{ claim.Record.employerNo }}</td>
-            <td>{{ claim.Record.employeeNo }}</td>
-            <td>{{ claim.Record.isClaimable }}</td>
-            <td>{{ claim.Record.amount }}</td>
-          </tr>
+        <table class="table-fill">
+          <thead>
+            <tr>
+              <th>Service Performed</th>
+              <th>Service Provider Id</th>
+              <th>Employer No.</th>
+              <th>Employee No.</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="claim in claims">
+              <td>{{ claim.Record.servicePerformed }}</td>
+              <td>{{ claim.Record.serviceProviderId }}</td>
+              <td>{{ claim.Record.employerNo }}</td>
+              <td>{{ claim.Record.employeeNo }}</td>
+              <td>{{ claim.Record.amount }}</td>
+            </tr>
+          </tbody>
         </table>
       </div>
     </div>
