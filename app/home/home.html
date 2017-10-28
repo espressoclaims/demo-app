@@ -42,7 +42,9 @@
               <th>Service Provider Id</th>
               <th>Employer No.</th>
               <th>Employee No.</th>
-              <th>Amount</th>
+              <th>Is Claimable</th>
+              <th>Amount Claimed</th>
+              <th>Amount Processed</th>
             </tr>
           </thead>
           <tbody>
@@ -51,7 +53,9 @@
               <td>{{ claim.Record.serviceProviderId }}</td>
               <td>{{ claim.Record.employerNo }}</td>
               <td>{{ claim.Record.employeeNo }}</td>
-              <td>{{ claim.Record.amount }}</td>
+              <td>{{ claim.Record.isClaimable}}</td>
+              <td>{{ claim.Record.amountClaimed }}</td>
+              <td>{{ claim.Record.amountProcessed }}</td>
             </tr>
           </tbody>
         </table>

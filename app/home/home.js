@@ -1,7 +1,10 @@
 'use strict';
 
-angular.module('myApp.home', ['ngRoute'])
+// use local storage as in-memory database to mock 'Oracle'
+localStorage.setItem("accupunture", 100);
+localStorage.setItem("rmt", 75);
 
+angular.module('myApp.home', ['ngRoute'])
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/', {
     templateUrl: 'home/home.html'
@@ -17,8 +20,15 @@ angular.module('myApp.home', ['ngRoute'])
   $scope.status = '';
 
   $scope.processClaim = function(claim) {
-    //FIXME 'isClaimable' field needs to be eventually removed
-    claim.isClaimable = true;
+    if(localStorage.getItem(claim.servicePerformed) === null) {
+      claim.isClaimable = false;
+      claim.amountClaimed = claim.amount;
+      claim.amountProcessed = "0.00";
+    } else {
+      claim.isClaimable = true;
+      claim.amountClaimed = claim.amount;
+      claim.amountProcessed = localStorage.getItem(claim.servicePerformed);
+    }
     $http({
           url: 'http://localhost:8081/addClaim',
           method: 'POST',
