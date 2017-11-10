@@ -1,11 +1,12 @@
 {
-  "name": "angular-seed",
-  "description": "A starter project for AngularJS",
+  "name": "espresso-claims-demo",
+  "description": "Esprsso Claims Demo",
   "version": "0.0.0",
-  "homepage": "https://github.com/angular/angular-seed",
+  "homepage": "",
   "license": "MIT",
   "private": true,
   "dependencies": {
+    "http-server": "^0.9.0",
     "angular": "~1.5.0",
     "angular-route": "~1.5.0",
     "angular-loader": "~1.5.0",
