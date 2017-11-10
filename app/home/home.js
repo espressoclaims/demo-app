@@ -11,7 +11,7 @@ angular.module('myApp.home', ['ngRoute'])
   });
 }])
 .controller('ListClaimsCtrl', ['$scope', '$http', function($scope, $http) {
-  $http.get("http://localhost:8081/getClaims")
+  $http.get("http://35.196.165.21:80/getClaims")
   .then(function (response) {
     $scope.claims = response.data;
   });
@@ -34,7 +34,7 @@ angular.module('myApp.home', ['ngRoute'])
       }
     }
     $http({
-          url: 'http://localhost:8081/addClaim',
+          url: 'http://35.196.165.21:80/addClaim',
           method: 'POST',
           data: claim,
           headers: {'Content-Type': 'application/json'}
