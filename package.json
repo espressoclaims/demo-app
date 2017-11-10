@@ -1,9 +1,9 @@
 {
-  "name": "angular-seed",
+  "name": "Espresso Claims Demo",
   "private": true,
-  "version": "0.0.0",
-  "description": "A starter project for AngularJS",
-  "repository": "https://github.com/angular/angular-seed",
+  "version": "0.1.0",
+  "description": "Demo app for Espresso Claims",
+  "repository": "https://github.com/espressoclaims/demo-app",
   "license": "MIT",
   "devDependencies": {
     "bower": "^1.7.7",
@@ -15,6 +15,9 @@
     "karma-jasmine": "^0.3.8",
     "karma-junit-reporter": "^0.4.1",
     "protractor": "^4.0.9"
+  },
+  "dependencies": {
+    "bower": "^1.7.7"
   },
   "scripts": {
     "postinstall": "bower install",
