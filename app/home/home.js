@@ -27,7 +27,11 @@ angular.module('myApp.home', ['ngRoute'])
     } else {
       claim.isClaimable = true;
       claim.amountClaimed = claim.amount;
-      claim.amountProcessed = localStorage.getItem(claim.servicePerformed);
+      if(localStorage.getItem(claim.servicePerformed) > claim.amount) {
+        claim.amountProcessed = claim.amount;
+      } else {
+        claim.amountProcessed = localStorage.getItem(claim.servicePerformed);
+      }
     }
     $http({
           url: 'http://localhost:8081/addClaim',
