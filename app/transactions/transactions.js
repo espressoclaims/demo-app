@@ -7,7 +7,7 @@ localStorage.setItem("rmt", 75);
 angular.module('myApp.transactions', ['ngRoute'])
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/transactions', {
-    templateUrl: 'transactions/transactions.html'
+    templateUrl: 'transactions/transactions.view.html'
   });
 }])
 .controller('ListClaimsCtrl', ['$scope', '$http', function($scope, $http) {
