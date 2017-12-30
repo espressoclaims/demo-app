@@ -9,5 +9,11 @@ angular.module('myApp', [
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');
 
-  $routeProvider.otherwise({redirectTo: '/'});
+  $routeProvider
+    .when('/', {
+      controller: 'TransactionsController',
+      templateUrl: 'transactions/transactions.view.html',
+      controllerAs: 'vm'
+    })
+    .otherwise({redirectTo: '/'});
 }]);

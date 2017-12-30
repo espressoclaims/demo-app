@@ -4,14 +4,14 @@
 localStorage.setItem("accupunture", 100);
 localStorage.setItem("rmt", 75);
 
-angular.module('myApp.home', ['ngRoute'])
+angular.module('myApp.transactions', ['ngRoute'])
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/', {
-    templateUrl: 'home/home.html'
+  $routeProvider.when('/transactions', {
+    templateUrl: 'transactions/transactions.html'
   });
 }])
 .controller('ListClaimsCtrl', ['$scope', '$http', function($scope, $http) {
-  $http.get("http://35.196.165.21:80/getClaims")
+  $http.get("http://localhost:8081/getClaims")
   .then(function (response) {
     $scope.claims = response.data;
   });
@@ -34,7 +34,7 @@ angular.module('myApp.home', ['ngRoute'])
       }
     }
     $http({
-          url: 'http://35.196.165.21:80/addClaim',
+          url: 'http://localhost:8081/addClaim',
           method: 'POST',
           data: claim,
           headers: {'Content-Type': 'application/json'}
