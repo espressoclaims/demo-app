@@ -5,41 +5,55 @@
   localStorage.setItem("accupunture", 100);
   localStorage.setItem("rmt", 75);
 
-  angular.module('myApp').controller('ListClaimsCtrl', ['$scope', '$http', function($scope, $http) {
+  angular.module('myApp').controller('TransactionsController', TransactionsController).controller('ListClaimsCtrl', ['$scope', '$http', function($scope, $http) {
       $http.get("http://localhost:8081/getClaims")
         .then(function(response) {
           $scope.claims = response.data;
         });
-    }])
-    .controller('ProcessClaimsCtrl', ['$scope', '$http', function($scope, $http) {
-      $scope.status = '';
-
-      $scope.processClaim = function(claim) {
-        if (localStorage.getItem(claim.servicePerformed) === null) {
-          claim.isClaimable = false;
-          claim.amountClaimed = claim.amount;
-          claim.amountProcessed = "0.00";
-        } else {
-          claim.isClaimable = true;
-          claim.amountClaimed = claim.amount;
-          if (localStorage.getItem(claim.servicePerformed) > claim.amount) {
-            claim.amountProcessed = claim.amount;
-          } else {
-            claim.amountProcessed = localStorage.getItem(claim.servicePerformed);
-          }
-        }
-        $http({
-          url: 'http://localhost:8081/addClaim',
-          method: 'POST',
-          data: claim,
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        }).then(function(response) {
-          $scope.status = response.data;
-        }, function(err) {
-          $scope.status = err.data;
-        });
-      };
     }]);
+
+  TransactionsController.$inject = ['$rootScope', '$cookies', '$http'];
+  function TransactionsController($rootScope, $cookies, $http) {
+    var vm = this;
+
+    vm.processClaim = processClaim;
+
+    (function initController() {
+      $rootScope.globals = $cookies.getObject('globals') || {};
+      if($rootScope.globals.currentUser) {
+        vm.user = $rootScope.globals.currentUser.username;
+      }
+    })();
+
+    function processClaim() {
+      vm.dataLoading = true;
+      if (localStorage.getItem(claim.servicePerformed) === null) {
+        claim.isClaimable = false;
+        claim.amountClaimed = claim.amount;
+        claim.amountProcessed = "0.00";
+      } else {
+        claim.isClaimable = true;
+        claim.amountClaimed = claim.amount;
+        if (localStorage.getItem(claim.servicePerformed) > claim.amount) {
+          claim.amountProcessed = claim.amount;
+        } else {
+          claim.amountProcessed = localStorage.getItem(claim.servicePerformed);
+        }
+      }
+      $http({
+        url: 'http://localhost:8081/addClaim',
+        method: 'POST',
+        data: claim,
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(function(response) {
+        vm.dataLoading = false;
+        vm.status = response.data;
+      }, function(err) {
+        vm.dataLoading = false;
+        vm.status = err.data;
+      });
+    }
+  }
 })();
