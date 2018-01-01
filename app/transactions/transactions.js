@@ -5,25 +5,30 @@
   localStorage.setItem("accupunture", 100);
   localStorage.setItem("rmt", 75);
 
-  angular.module('myApp').controller('TransactionsController', TransactionsController).controller('ListClaimsCtrl', ['$scope', '$http', function($scope, $http) {
-      $http.get("http://localhost:8081/getClaims")
-        .then(function(response) {
-          $scope.claims = response.data;
-        });
-    }]);
+  angular.module('myApp').controller('TransactionsController', TransactionsController);
 
   TransactionsController.$inject = ['$rootScope', '$cookies', '$http', 'FlashService'];
   function TransactionsController($rootScope, $cookies, $http, FlashService) {
     var vm = this;
 
     vm.processClaim = processClaim;
+    vm.getClaims = getClaims;
 
     (function initController() {
       $rootScope.globals = $cookies.getObject('globals') || {};
       if($rootScope.globals.currentUser) {
         vm.user = $rootScope.globals.currentUser.username;
       }
+
+      getClaims();
     })();
+
+    function getClaims() {
+      $http.get("http://localhost:8081/getClaims")
+        .then(function(response) {
+          vm.claims = response.data;
+        });
+    }
 
     function processClaim() {
       vm.dataLoading = true;
@@ -51,6 +56,7 @@
       }).then(function(response) {
         vm.dataLoading = false;
         FlashService.Success(response.data);
+        getClaims();
       }, function(err) {
         vm.dataLoading = false;
         FlashService.Error(err.data);
