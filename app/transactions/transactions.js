@@ -24,7 +24,7 @@
     })();
 
     function getClaims() {
-      $http.get("http://localhost:8081/getClaims")
+      $http.get("http://localhost:8081/getClaims?user=" + vm.user)
         .then(function(response) {
           vm.claims = response.data;
         });
@@ -33,6 +33,7 @@
     function processClaim() {
       vm.dataLoading = true;
       var claim = vm.claim;
+      claim.user = vm.user;
       if (localStorage.getItem(claim.servicePerformed) === null) {
         claim.isClaimable = false;
         claim.amountClaimed = claim.amount;
