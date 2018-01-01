@@ -47,6 +47,7 @@
           claim.amountProcessed = localStorage.getItem(claim.servicePerformed);
         }
       }
+      delete claim["amount"];
       $http({
         url: 'http://localhost:8081/addClaim',
         method: 'POST',
