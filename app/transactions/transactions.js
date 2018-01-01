@@ -12,8 +12,8 @@
         });
     }]);
 
-  TransactionsController.$inject = ['$rootScope', '$cookies', '$http'];
-  function TransactionsController($rootScope, $cookies, $http) {
+  TransactionsController.$inject = ['$rootScope', '$cookies', '$http', 'FlashService'];
+  function TransactionsController($rootScope, $cookies, $http, FlashService) {
     var vm = this;
 
     vm.processClaim = processClaim;
@@ -27,6 +27,7 @@
 
     function processClaim() {
       vm.dataLoading = true;
+      var claim = vm.claim;
       if (localStorage.getItem(claim.servicePerformed) === null) {
         claim.isClaimable = false;
         claim.amountClaimed = claim.amount;
@@ -49,10 +50,10 @@
         }
       }).then(function(response) {
         vm.dataLoading = false;
-        vm.status = response.data;
+        FlashService.Success(response.data);
       }, function(err) {
         vm.dataLoading = false;
-        vm.status = err.data;
+        FlashService.Error(err.data);
       });
     }
   }

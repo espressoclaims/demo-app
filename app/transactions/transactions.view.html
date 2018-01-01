@@ -5,28 +5,28 @@
     <input id="tab2-1" name="tabs-two" type="radio" checked="checked">
     <div>
       <h4>Use the form below to submit a claim</h4>
-      <div ng-controller="ProcessClaimsCtrl">
-        <form novalidate id="processForm">
+      <div>
+        <form name="form" role="form" id="processForm" ng-submit="vm.processClaim()">
           <fieldset>
-            <input placeholder="Service Performed" type="text" tabindex="1" required autofocus ng-model="claim.servicePerformed">
+            <input placeholder="Service Performed" type="text" tabindex="1" required autofocus ng-model="vm.claim.servicePerformed">
           </fieldset>
           <fieldset>
-            <input placeholder="Service Provider Id" type="text" tabindex="2" required ng-model="claim.serviceProviderId">
+            <input placeholder="Service Provider Id" type="text" tabindex="2" required ng-model="vm.claim.serviceProviderId">
           </fieldset>
           <fieldset>
-            <input placeholder="Employer No" type="text" tabindex="3" required ng-model="claim.employerNo">
+            <input placeholder="Employer No" type="text" tabindex="3" required ng-model="vm.claim.employerNo">
           </fieldset>
           <fieldset>
-            <input placeholder="Employee No" type="text" tabindex="4" required ng-model="claim.employeeNo">
+            <input placeholder="Employee No" type="text" tabindex="4" required ng-model="vm.claim.employeeNo">
           </fieldset>
           <fieldset>
-            <input placeholder="Amount" type="text" tabindex="4" required ng-model="claim.amount">
+            <input placeholder="Amount" type="text" tabindex="4" required ng-model="vm.claim.amount">
           </fieldset>
-          <fieldset>
-            <button name="submit" type="submit" ng-click="processClaim(claim)">Process</button>
-          </fieldset>
+          <div class="form-actions">
+              <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">Process</button>
+              <img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+          </div>
         </form>
-        <pre>{{status}}</pre>
       </div>
     </div>
   </div>
@@ -35,7 +35,7 @@
     <input id="tab2-2" name="tabs-two" type="radio">
     <div>
       <h4>See below the list of all claims processed on the network.</h4>
-      <div  ng-controller="ListClaimsCtrl">
+      <div ng-controller="ListClaimsCtrl">
         <table class="table-fill">
           <thead>
             <tr>
