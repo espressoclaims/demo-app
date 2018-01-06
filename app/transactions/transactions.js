@@ -7,12 +7,13 @@
 
   angular.module('myApp').controller('TransactionsController', TransactionsController);
 
-  TransactionsController.$inject = ['$rootScope', '$cookies', '$http', 'FlashService'];
-  function TransactionsController($rootScope, $cookies, $http, FlashService) {
+  TransactionsController.$inject = ['$rootScope', '$cookies', '$http', '$location', 'FlashService', 'AuthenticationService'];
+  function TransactionsController($rootScope, $cookies, $http, $location, FlashService, AuthenticationService) {
     var vm = this;
 
     vm.processClaim = processClaim;
     vm.getClaims = getClaims;
+    vm.logout = logout;
 
     (function initController() {
       $rootScope.globals = $cookies.getObject('globals') || {};
@@ -22,6 +23,11 @@
 
       getClaims();
     })();
+
+    function logout() {
+      AuthenticationService.ClearCredentials();
+      $location.path('/');
+    }
 
     function getClaims() {
       $http.get("http://localhost:8081/getClaims?user=" + vm.user)
