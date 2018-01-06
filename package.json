@@ -21,7 +21,7 @@
   },
   "scripts": {
     "config": {
-      "hostname": "localhost"
+      "hostname": "0.0.0.0"
     },
     "postinstall": "bower install",
     "update-deps": "npm update",
