@@ -3,9 +3,9 @@
 
   angular.module('myApp').factory('AuthenticationService', AuthenticationService);
 
-  AuthenticationService.$inject = ['$http', '$cookies', '$rootScope', '$timeout'];
+  AuthenticationService.$inject = ['__env', '$http', '$cookies', '$rootScope', '$timeout'];
 
-  function AuthenticationService($http, $cookies, $rootScope, $timeout) {
+  function AuthenticationService(__env, $http, $cookies, $rootScope, $timeout) {
     var service = {};
 
     service.Login = Login;
@@ -15,7 +15,7 @@
     return service;
 
     function Login(username, callback) {
-      $http.post('http://localhost:8081/authenticate', { username: username})
+      $http.post(__env.apiUrl + '/authenticate', { username: username})
       .success(function (response) {
         callback(response);
       });

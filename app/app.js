@@ -1,6 +1,13 @@
 (function() {
   'use strict';
 
+  var env = {};
+
+  // Import variables if present (from env.js)
+  if (window) {
+    Object.assign(env, window.__env);
+  }
+
   // Declare app level module which depends on views, and components
   angular.module('myApp', [
     'ngRoute',
@@ -36,5 +43,6 @@
         $location.path('/');
       }
     });
-  }]);
+  }]).
+  constant('__env', env);
 })();

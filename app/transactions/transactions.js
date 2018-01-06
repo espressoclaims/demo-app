@@ -7,8 +7,8 @@
 
   angular.module('myApp').controller('TransactionsController', TransactionsController);
 
-  TransactionsController.$inject = ['$rootScope', '$cookies', '$http', '$location', 'FlashService', 'AuthenticationService'];
-  function TransactionsController($rootScope, $cookies, $http, $location, FlashService, AuthenticationService) {
+  TransactionsController.$inject = ['__env', '$rootScope', '$cookies', '$http', '$location', 'FlashService', 'AuthenticationService'];
+  function TransactionsController(__env, $rootScope, $cookies, $http, $location, FlashService, AuthenticationService) {
     var vm = this;
 
     vm.processClaim = processClaim;
@@ -30,7 +30,7 @@
     }
 
     function getClaims() {
-      $http.get("http://localhost:8081/getClaims?user=" + vm.user)
+      $http.get(__env.apiUrl + "/getClaims?user=" + vm.user)
         .then(function(response) {
           vm.claims = response.data;
         });
@@ -55,7 +55,7 @@
       }
       delete claim["amount"];
       $http({
-        url: 'http://localhost:8081/addClaim',
+        url: __env.apiUrl + '/addClaim',
         method: 'POST',
         data: claim,
         headers: {
