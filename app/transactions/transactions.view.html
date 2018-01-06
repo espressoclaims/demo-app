@@ -1,7 +1,4 @@
-<div class="navbar">
-  <span>Hi, {{vm.user}}</span>
-  <a ng-click="vm.logout()">Logout</a>
-</div>
+<h2>Hi, {{vm.user}}</h2>
 <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
 <div class="tabs">
   <div class="tab-2">
@@ -68,3 +65,4 @@
     </div>
   </div>
 </div>
+<a ng-click="vm.logout()" ng-show="vm.user">Logout</a>
