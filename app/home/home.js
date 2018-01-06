@@ -23,7 +23,7 @@
           AuthenticationService.SetCredentials(vm.username);
           $location.path('/transactions');
         } else {
-          FlashService.Error(response.message);
+          FlashService.Error("Username or password is not valid.");
           vm.dataLoading = false;
         }
       })

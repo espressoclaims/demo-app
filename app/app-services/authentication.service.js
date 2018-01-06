@@ -15,20 +15,10 @@
     return service;
 
     function Login(username, callback) {
-      $timeout(function() {
-        var response;
-        if (username != null) {
-          response = {
-            success: true
-          };
-        } else {
-          response = {
-            success: false,
-            message: 'Username is incorrect'
-          };
-        }
+      $http.post('http://localhost:8081/authenticate', { username: username})
+      .success(function (response) {
         callback(response);
-      }, 1000);
+      });
     }
 
     function SetCredentials(username) {
