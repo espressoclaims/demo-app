@@ -14,11 +14,12 @@
 
     return service;
 
-    function Login(username, callback) {
-      $http.post(__env.apiUrl + '/authenticate', { username: username})
-      .success(function (response) {
-        callback(response);
-      });
+    function Login(username, successCallback, errorCallback) {
+      $http.post(__env.apiUrl + '/authenticate', {
+          username: username
+        })
+        .success(successCallback)
+        .error(errorCallback);
     }
 
     function SetCredentials(username) {
@@ -44,5 +45,4 @@
       $http.defaults.headers.common.Authorization = 'Basic';
     }
   }
-
 })();

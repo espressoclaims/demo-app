@@ -16,14 +16,12 @@
 
     function login() {
       vm.dataLoading = true;
-      AuthenticationService.Login(vm.username, function(response) {
-        if (response.success) {
-          AuthenticationService.SetCredentials(vm.username);
-          $location.path('/transactions');
-        } else {
-          FlashService.Error("Username or password is not valid.");
-          vm.dataLoading = false;
-        }
+      AuthenticationService.Login(vm.username, function successCallback(response) {
+        AuthenticationService.SetCredentials(vm.username);
+        $location.path('/transactions');
+      }, function errorCallback(response) {
+        FlashService.Error("Username or password is not valid.");
+        vm.dataLoading = false;
       })
     }
   }
