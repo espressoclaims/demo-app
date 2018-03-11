@@ -13,10 +13,15 @@
     return service;
 
     function Create(user, successCallback, errorCallback) {
-      $http.post(__env.apiUrl + '/register', {
-          username: user.username,
-          password: user.password
-        }).success(successCallback)
+      console.log(user);
+      $http({
+        url: __env.apiUrl + '/registerUser',
+        method: 'POST',
+        data: user,
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).success(successCallback)
         .error(errorCallback);
     }
   }
